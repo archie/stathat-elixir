@@ -1,7 +1,7 @@
 defmodule StathatServer do
   use GenServer
 
-  @stathaturl "http://api.stathat.com/"
+  @stathaturl "https://api.stathat.com/"
 
   def start(key) do
     GenServer.start(__MODULE__, [ezkey: key], name: Stathat)
@@ -25,16 +25,16 @@ defmodule StathatServer do
     send_value(url)
     {:noreply, state}
   end
-  # def handle_cast({:cl_count, userkey, statkey, count}, state) do
-  #   url = build_url("ez", [{"ukey", userkey}, {"key", statkey}, {"count", count}])
-  #   send_value(url)
-  #   {:noreply, state}
-  # end
-  # def handle_cast({:cl_value, userkey, statkey, value}, state) do
-  #   url = build_url("ez", [{"ukey", userkey}, {"key", statkey}, {"value", count}])
-  #   send_value(url)
-  #   {:noreply, state}
-  # end
+  def handle_cast({:cl_count, userkey, statkey, count}, state) do
+    url = build_url("ez", [{"ukey", userkey}, {"key", statkey}, {"count", count}])
+    send_value(url)
+    {:noreply, state}
+  end
+  def handle_cast({:cl_value, userkey, statkey, value}, state) do
+    url = build_url("ez", [{"ukey", userkey}, {"key", statkey}, {"value", count}])
+    send_value(url)
+    {:noreply, state}
+  end
   def handle_cast(_req, state) do
     {:noreply, state}
   end

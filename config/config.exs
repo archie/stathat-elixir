@@ -3,4 +3,4 @@
 use Mix.Config
 
 config :statman,
-  ezkey: "marcus.ljungblad@upptec.se"
+  ezkey: "your_ezkey@here.now"
